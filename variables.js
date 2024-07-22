@@ -32,7 +32,7 @@ if(number%5===0){
 
 
 let grade = prompt("Enter the marks :");
-if(grade >=80 && grade<=100){
+if(grade >=90 && grade<=100){
     console.log("A");
 }else if( grade >=70 && grade<=89){
     console.log("B");
