@@ -32,3 +32,9 @@ user2.email = "samir@gmail.com";
 
 console.log(user1);
 console.log(user2);
+
+
+/* summary , stack makes a copy for reference so that whenever any changes or modification is done 
+    it don't affect the original value ,
+        while in heap it refers the original value as a reference hence whenever the changes is done
+        it affects the original value as well . run the code you will find out what i mean .*/

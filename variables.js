@@ -16,3 +16,30 @@ accountCity="kathmandu"
 console.log("accountId");
 console.table([accountEmail,accountPass,accountCity,accountState]);
 
+
+// question get user number , and check if it is the multiple of 5 or not 
+
+//solution 
+
+
+let number = prompt(" Enter the number ");
+if(number%5===0){
+    console.log("it is the multiple of 5");
+}else{
+    console.log("it is not the multiple of 5");
+}
+
+
+
+let grade = prompt("Enter the marks :");
+if(grade >=80 && grade<=100){
+    console.log("A");
+}else if( grade >=70 && grade<=89){
+    console.log("B");
+}else if( grade >=60 && grade<=69){
+    console.log("C");
+}else if( grade >=50 && grade<=59){
+    console.log("D");
+}else if( grade >=0 && grade<=49){
+    console.log("E");
+}
