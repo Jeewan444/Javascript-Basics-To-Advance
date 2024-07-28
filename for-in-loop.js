@@ -15,4 +15,4 @@ for(let i in student){
 for(let i in student){
     console.log(i , student[i]);
     }
-    
+

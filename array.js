@@ -9,7 +9,7 @@ for(city of cities){
 let marks = [87,78,92,93,88];
 let sum = 0;
 for(let i of marks){
-    sum =sum + i;
+    sum += i;
     }
 let average = (sum / marks.length);
 console.log("average marks of student :",average);

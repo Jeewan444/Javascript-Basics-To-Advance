@@ -16,7 +16,12 @@
 // string methods are used to find the last character at the index of the string
 
 let str = "jeewan";
+
+//by default the new string variable is generated and stored the value or the string 
+// and the old string variable is not changed , so to access the new value we do this 
 newstring = str.toUpperCase();
+
+//if we want to change the original value to upper case 
 str = str.toUpperCase();
 
 console.log(str);
