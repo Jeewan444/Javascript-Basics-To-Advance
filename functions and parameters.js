@@ -36,3 +36,14 @@ function loginUserName(username){
 
  console.log(loginUserName())
 
+
+//Write a function named greet that takes a single parameter name and returns a greeting message that says "Hello, [name]!"
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+ 
+console.log(greet("Alice")); 
+console.log(greet("Bob"));   
+
+
