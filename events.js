@@ -170,28 +170,26 @@ var snowStorm = (function(window, document) {
         o.style.top = (y - storm.flakeHeight) + 'px';
   
       } else if (noFixed) {
-  
-        o.style.right = (100-(x/screenX*100)) + '%';
-        // avoid creating vertical scrollbars
-        o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
-  
-      } else {
-  
-        if (!storm.flakeBottom) {
-  
-          // if not using a fixed bottom coordinate...
-          o.style.right = (100-(x/screenX*100)) + '%';
-          o.style.bottom = (100-(y/screenY*100)) + '%';
-  
-        } else {
-  
-          // absolute top.
-          o.style.right = (100-(x/screenX*100)) + '%';
-          o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
-  
-        }
-  
-      }
+               
+                     o.style.right = (100-(x/screenX*100)) + '%';
+                     // avoid creating vertical scrollbars
+                     o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
+               
+                   }
+             else if (!storm.flakeBottom) {
+               
+                       // if not using a fixed bottom coordinate...
+                       o.style.right = (100-(x/screenX*100)) + '%';
+                       o.style.bottom = (100-(y/screenY*100)) + '%';
+               
+                     }
+             else {
+               
+                       // absolute top.
+                       o.style.right = (100-(x/screenX*100)) + '%';
+                       o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
+               
+                     }
   
     };
   
@@ -241,6 +239,7 @@ var snowStorm = (function(window, document) {
   
     }());
   
+// sourcery skip: avoid-function-declarations-in-blocks
     function rnd(n,min) {
       if (isNaN(min)) {
         min = 0;
@@ -248,6 +247,8 @@ var snowStorm = (function(window, document) {
       return (Math.random()*n)+min;
     }
   
+// sourcery skip: unused-skip-comment
+// sourcery skip: avoid-function-declarations-in-blocks
     function plusMinus(n) {
       return (parseInt(rnd(2),10)===1?n*-1:n);
     }
@@ -266,6 +267,7 @@ var snowStorm = (function(window, document) {
     };
   
     this.scrollHandler = function() {
+// sourcery skip: avoid-using-var
       var i;
       // "attach" snowflakes to bottom of window if no absolute bottom value was given
       scrollY = (storm.flakeBottom ? 0 : parseInt(window.scrollY || document.documentElement.scrollTop || (noFixed ? document.body.scrollTop : 0), 10));
@@ -365,7 +367,7 @@ var snowStorm = (function(window, document) {
       var s = this;
       this.type = type;
       this.x = x||parseInt(rnd(screenX-20),10);
-      this.y = (!isNaN(y)?y:-rnd(screenY)-12);
+      this.y = (isNaN(y) ? -rnd(screenY)-12 : y);
       this.vX = null;
       this.vY = null;
       this.vAmpTypes = [1,1.2,1.4,1.6,1.8]; // "amplification" for vX/vY (based on flake size/type)
@@ -492,17 +494,17 @@ var snowStorm = (function(window, document) {
   
       this.melt = function() {
         if (!storm.useMeltEffect || !s.melting) {
-          s.recycle();
-        } else {
-          if (s.meltFrame < s.meltFrameCount) {
-            s.setOpacity(s.o,s.meltFrames[s.meltFrame]);
-            s.o.style.fontSize = s.fontSize-(s.fontSize*(s.meltFrame/s.meltFrameCount))+'px';
-            s.o.style.lineHeight = storm.flakeHeight+2+(storm.flakeHeight*0.75*(s.meltFrame/s.meltFrameCount))+'px';
-            s.meltFrame++;
-          } else {
-            s.recycle();
-          }
-        }
+                  s.recycle();
+                }
+        else if (s.meltFrame < s.meltFrameCount) {
+                    s.setOpacity(s.o,s.meltFrames[s.meltFrame]);
+                    s.o.style.fontSize = s.fontSize-(s.fontSize*(s.meltFrame/s.meltFrameCount))+'px';
+                    s.o.style.lineHeight = storm.flakeHeight+2+(storm.flakeHeight*0.75*(s.meltFrame/s.meltFrameCount))+'px';
+                    s.meltFrame++;
+                  }
+        else {
+                    s.recycle();
+                  }
       };
   
       this.recycle = function() {
@@ -558,6 +560,7 @@ var snowStorm = (function(window, document) {
       if (!storm.followMouse) {
         return true;
       }
+// sourcery skip: avoid-using-var
       var x = parseInt(e.clientX,10);
       if (x<screenX2) {
         windOffset = -windMultiplier+(x/screenX2*windMultiplier);
@@ -568,6 +571,7 @@ var snowStorm = (function(window, document) {
     };
   
     this.createSnow = function(limit,allowInactive) {
+// sourcery skip: avoid-using-var
       var i;
       for (i=0; i<limit; i++) {
         storm.flakes[storm.flakes.length] = new storm.SnowFlake(parseInt(rnd(flakeTypes),10));
@@ -618,6 +622,7 @@ var snowStorm = (function(window, document) {
         return true;
       }
       if (typeof storm.targetElement === 'string') {
+// sourcery skip: avoid-using-var
         var targetID = storm.targetElement;
         storm.targetElement = document.getElementById(targetID);
         if (!storm.targetElement) {
