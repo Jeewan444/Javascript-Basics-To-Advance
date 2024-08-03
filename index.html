@@ -6,7 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <script src="practicequestion.js"></script>
+<script src="recursive function.js"></script>
+<body onload="changecolor()">
+
+    <H1> Events examples </H1>
+    <button onclick = "changecolor()"> click me to change the color</button>
+    <button onmouseover = "changecolor()"> click me to change the color</button>
+    <input type="text" onchange = "changecolor()" placeholder="write something and enter to change color"> </input>
+    <button onmouseout = "changecolor()"> click me to change the color</button>
+
+
 </body>
+
+<script>
+    function changecolor(){
+
+        let red = Math.floor(Math.random()*256);
+        let blue = Math.floor(Math.random()*256);
+        let green = Math.floor(Math.random()*256);
+        const randomColor = `rgb(${red}, ${green}, ${blue})`
+        document.body.style.backgroundColor = randomColor;
+}
+</script>
 </html>
