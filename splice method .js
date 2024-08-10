@@ -34,3 +34,28 @@ console.log(result);
 //   { firstName: 'Jane', lastName: 'Smith' },
 //   { firstName: 'Sam', lastName: 'Brown' }
 // ]
+
+
+
+//uses of the splice method—removing, adding, and replacing elements
+let fruits = ['Apple', 'Banana', 'Cherry', 'Date'];
+
+// 1. Removing Elements
+let removed = fruits.splice(1, 2);  
+
+console.log('After Removing Elements:');
+console.log(fruits);  
+console.log('Removed Elements:', removed);  
+
+// 2. Adding Elements
+fruits.splice(1, 0, 'Mango', 'Pineapple');  
+
+console.log('After Adding Elements:');
+console.log(fruits);  
+
+// 3. Replacing Elements
+fruits.splice(2, 1, 'Orange', 'Grapes');  
+
+console.log('After Replacing Elements:');
+console.log(fruits);  
+
