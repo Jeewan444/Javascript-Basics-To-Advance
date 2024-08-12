@@ -92,3 +92,40 @@ for(let i = 0; i<items4.length; i++){
             items8[i] -= offer; 
             console.log(items8[i]);
         }
+
+
+//Given two arrays, arr1 and arr2, write a function to find their intersection, i.e., elements that are present in both arrays. 
+//The result should be a new array containing these common elements.
+
+const arr1 = [1, 2, 2, 1];
+const arr2 = [2, 2];
+
+const result = intersectArrays(arr1, arr2);
+console.log(result); // Output: [2, 2]
+
+
+// solution
+function intersectArrays(arr1, arr2) {
+    // Create a map to count occurrences of elements in arr2
+    const countMap = new Map();
+    arr2.forEach(element => {
+        countMap.set(element, (countMap.get(element) || 0) + 1);
+    });
+
+    // Filter arr1 based on the countMap
+    return arr1.filter(element => {
+        const count = countMap.get(element);
+        if (count > 0) {
+            countMap.set(element, count - 1);
+            return true;
+        }
+        return false;
+    });
+}
+
+// Example usage
+const arr1 = [1, 2, 2, 1];
+const arr2 = [2, 2];
+const result = intersectArrays(arr1, arr2);
+console.log(result); // Output: [2, 2]
+
