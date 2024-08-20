@@ -57,4 +57,25 @@ console.log(counter.increment());
 console.log(counter.reset());     
 console.log(counter.decrement()); 
 
+/*
+Create a function that toggles the visibility of a paragraph on a webpage. When the user clicks a button, the paragraph should either be shown or hidden. If the paragraph is visible and the user clicks the button, it should be hidden. If the paragraph is hidden and the user clicks the button, it should be shown.
+
+Example:
+
+Initially, the paragraph is visible. When the user clicks the button, the paragraph becomes hidden, and the button text changes to "Show".
+When the user clicks the button again, the paragraph becomes visible, and the button text changes back to "Hide".
+*/
+
+//solution
+
+document.getElementById('toggleButton').addEventListener('click', function() {
+    const paragraph = document.getElementById('myParagraph');
+    if (paragraph.style.display === 'none') {
+        paragraph.style.display = 'block';
+        this.textContent = 'Hide';
+    } else {
+        paragraph.style.display = 'none';
+        this.textContent = 'Show';
+    }
+});
 
