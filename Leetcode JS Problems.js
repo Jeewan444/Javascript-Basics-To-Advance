@@ -132,3 +132,25 @@ var findComplement = function(num) {
     }
     return mask - 1 - num;
 };
+
+//problem number 592 
+
+function fractionAddition(expression) {
+    let fractions = expression.match(/[+-]?\d+\/\d+/g);
+    let numerator = 0;
+    let denominator = 1;
+
+    for (let fraction of fractions) {
+        let [num, denom] = fraction.split('/').map(Number);
+        numerator = numerator * denom + num * denominator;
+        denominator *= denom;
+
+        let gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+        let gcdValue = gcd(Math.abs(numerator), denominator);
+
+        numerator /= gcdValue;
+        denominator /= gcdValue;
+    }
+
+    return numerator + '/' + denominator;
+}
