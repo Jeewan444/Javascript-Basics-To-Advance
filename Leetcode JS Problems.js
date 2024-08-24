@@ -154,3 +154,27 @@ function fractionAddition(expression) {
 
     return numerator + '/' + denominator;
 }
+
+//JavaScript code to find the Nth Fibonacci number:
+function findNthFibonacci(N) {
+    // Edge cases for N = 1 or 2
+    if (N === 1 || N === 2) {
+        return 1;
+    }
+
+    // Fibonacci logic
+    let a = 1, b = 1;
+    let fib = 1;
+    for (let i = 3; i <= N; i++) {
+        fib = a + b;
+        a = b;
+        b = fib;
+    }
+
+    return fib;
+}
+
+// Sample input
+const N = 8;
+console.log(findNthFibonacci(N)); // Output: 21
+
