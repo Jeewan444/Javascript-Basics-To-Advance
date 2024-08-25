@@ -68,3 +68,49 @@ const manipulateUsers = (users) => {
 
 console.log(manipulateUsers(users));
 
+// most used dom techniques 
+
+// 1. Change the Text of an Element
+function changeText() {
+    document.getElementById('myParagraph').textContent = 'New Text';
+}
+
+// 2. Add a New Element to the DOM
+function addElement() {
+    var ul = document.getElementById('myList');
+    var li = document.createElement('li');
+    li.textContent = 'New Item';
+    ul.appendChild(li);
+}
+
+// 3. Remove an Element from the DOM
+function removeElement() {
+    var element = document.getElementById('myParagraph');
+    element.parentNode.removeChild(element);
+}
+
+// 4. Toggle a Class on an Element
+function toggleClass() {
+    var element = document.getElementById('myParagraph');
+    element.classList.toggle('highlight');
+}
+
+// 5. Change the Attribute of an Element
+function changeAttribute() {
+    var img = document.getElementById('myImage');
+    img.setAttribute('src', 'new-image.jpg');
+    img.setAttribute('alt', 'New Image');
+}
+
+// 6. Get the Value of an Input Field
+function getValue() {
+    var input = document.getElementById('myInput');
+    var value = input.value;
+    document.getElementById('display').textContent = 'Input Value: ' + value;
+}
+
+// 7. Listen for an Event and Respond
+document.getElementById('myButton').addEventListener('click', function() {
+    document.getElementById('message').textContent = 'Button was clicked!';
+});
+
