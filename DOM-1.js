@@ -114,3 +114,24 @@ document.getElementById('myButton').addEventListener('click', function() {
     document.getElementById('message').textContent = 'Button was clicked!';
 });
 
+
+
+
+//Toggle the visibility of a paragraph when a button is clicked.
+// Select the button and the paragraph elements
+const toggleButton = document.getElementById('toggleButton');
+const paragraph = document.getElementById('paragraph');
+
+// Add a click event listener to the button
+toggleButton.addEventListener('click', function() {
+    // Check if the paragraph is currently visible
+    if (paragraph.style.display === 'none') {
+        // If not visible, make it visible
+        paragraph.style.display = 'block';
+    } else {
+        // If visible, hide it
+        paragraph.style.display = 'none';
+    }
+});
+
+
