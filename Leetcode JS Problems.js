@@ -232,7 +232,7 @@ function addTask() {
     }
 }
 
-// Add event listener to the add button
+// Adding  event listener to the add button
 addButton.addEventListener('click', addTask);
 
 // Optionally, allow pressing 'Enter' to add the task
