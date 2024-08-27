@@ -241,3 +241,56 @@ taskInput.addEventListener('keypress', function(event) {
         addTask();
     }
 });
+
+// 1514. Path with Maximum Probability
+
+/* You are given an undirected weighted graph of n nodes (0-indexed), represented by an edge list where edges[i] = [a, b] is an undirected edge connecting the nodes a and b with a probability of success of traversing that edge succProb[i].
+
+Given two nodes start and end, find the path with the maximum probability of success to go from start to end and return its success probability.
+
+If there is no path from start to end, return 0. Your answer will be accepted if it differs from the correct answer by at most 1e-5.
+*/
+
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @param {number[]} succProb
+ * @param {number} start
+ * @param {number} end
+ * @return {number}
+ */
+var maxProbability = function(n, edges, succProb, start, end) {
+    // Create a graph as an adjacency list with probability as weights
+    const graph = Array.from({ length: n }, () => []);
+    for (let i = 0; i < edges.length; i++) {
+        const [u, v] = edges[i];
+        const prob = succProb[i];
+        graph[u].push([v, prob]);
+        graph[v].push([u, prob]);
+    }
+
+    // Use a max heap (priority queue) to store the maximum probabilities
+    const maxHeap = new MaxPriorityQueue({ priority: x => x[1] });
+    const probabilities = new Array(n).fill(0);
+    probabilities[start] = 1; // Start node has a probability of 1
+
+    maxHeap.enqueue([start, 1]);
+
+    while (!maxHeap.isEmpty()) {
+        const [currentNode, currentProb] = maxHeap.dequeue().element;
+
+        if (currentNode === end) {
+            return currentProb;
+        }
+
+        for (const [neighbor, prob] of graph[currentNode]) {
+            const newProb = currentProb * prob;
+            if (newProb > probabilities[neighbor]) {
+                probabilities[neighbor] = newProb;
+                maxHeap.enqueue([neighbor, newProb]);
+            }
+        }
+    }
+
+    return 0;
+};
