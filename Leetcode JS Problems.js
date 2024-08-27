@@ -178,3 +178,66 @@ function findNthFibonacci(N) {
 const N = 8;
 console.log(findNthFibonacci(N)); // Output: 21
 
+
+//Problem: Create a Dynamic To-Do List
+//Question:
+
+/*  You are tasked with creating a simple To-Do list using HTML and JavaScript (DOM manipulation). The list should have the following functionalities:
+
+Add a Task: There should be an input field where users can type a task and a button to add the task to the list.
+Delete a Task: Each task added should have a delete button next to it, allowing users to remove the task from the list.
+Mark as Completed: When a task is clicked, it should be marked as completed by adding a line-through style.
+Implement this functionality using only JavaScript to manipulate the DOM.
+*/
+
+// Get references to the input field, add button, and the list
+const taskInput = document.getElementById('taskInput');
+const addButton = document.getElementById('addButton');
+const taskList = document.getElementById('taskList');
+
+// Function to add a new task
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+        // Create a new list item
+        const li = document.createElement('li');
+
+        // Create a span for the task text
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
+
+        // Add event listener to toggle completion
+        taskSpan.addEventListener('click', function() {
+            taskSpan.classList.toggle('completed');
+        });
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+
+        // Add event listener to delete the task
+        deleteButton.addEventListener('click', function() {
+            taskList.removeChild(li);
+        });
+
+        // Append the task and delete button to the list item
+        li.appendChild(taskSpan);
+        li.appendChild(deleteButton);
+
+        // Append the list item to the task list
+        taskList.appendChild(li);
+
+        // Clear the input field
+        taskInput.value = '';
+    }
+}
+
+// Add event listener to the add button
+addButton.addEventListener('click', addTask);
+
+// Optionally, allow pressing 'Enter' to add the task
+taskInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
