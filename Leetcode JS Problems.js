@@ -445,3 +445,36 @@ var modifiedList = function(nums, head) {
     return temp.next;
 };
 
+/* 
+
+1367 Linked List In binary tree
+
+Given a binary tree root and a linked list with head as the first node. 
+
+Return True if all the elements in the linked list starting from the head correspond to some downward path connected in the binary tree otherwise return False.
+
+In this context downward path means a path that starts at some node and goes downwards.
+
+*/
+
+
+var isSubPath = function(head, root) {
+    return dfs(head, head, root);
+};
+
+var dfs = function(head, cur, root) {
+    if (cur === null) return true;  // Successfully matched the list
+    if (root === null) return false; // Reached the end of the tree without matching
+    
+    if (cur.val === root.val) {
+        cur = cur.next;  // Move to the next list node if value matches
+    } else if (head.val === root.val) {
+        head = head.next; // Start new matching attempt if the value matches head of list
+    } else {
+        cur = head;  // Reset the matching pointer
+    }
+    
+    // Recursively check left and right subtrees
+    return dfs(head, cur, root.left) || dfs(head, cur, root.right);
+};
+
