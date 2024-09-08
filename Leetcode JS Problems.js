@@ -56,7 +56,7 @@ const counter = createCounter(2);
 console.log(counter.increment()); 
 console.log(counter.reset());     
 console.log(counter.decrement()); 
-
+-----------------------------------------------------------------------------------------------------------------------
 /*
 Create a function that toggles the visibility of a paragraph on a webpage. When the user clicks a button, the paragraph should either be shown or hidden. If the paragraph is visible and the user clicks the button, it should be hidden. If the paragraph is hidden and the user clicks the button, it should be shown.
 
@@ -78,7 +78,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
         this.textContent = 'Show';
     }
 });
-
+-----------------------------------------------------------------------------------------------------------------------
 
 /* There is a strange printer with the following two special properties:
 
@@ -118,7 +118,7 @@ var strangePrinter = function(s) {
     return dp[0][n - 1];
 };
 
-
+-----------------------------------------------------------------------------------------------------------------------
 /*the complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to 0's in its binary representation.
 
 For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
@@ -132,6 +132,9 @@ var findComplement = function(num) {
     }
     return mask - 1 - num;
 };
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 //problem number 592 
 
@@ -178,6 +181,8 @@ function findNthFibonacci(N) {
 const N = 8;
 console.log(findNthFibonacci(N)); // Output: 21
 
+
+-----------------------------------------------------------------------------------------------------------------------
 
 //Problem: Create a Dynamic To-Do List
 //Question:
@@ -242,6 +247,9 @@ taskInput.addEventListener('keypress', function(event) {
     }
 });
 
+
+-----------------------------------------------------------------------------------------------------------------------
+
 // 1514. Path with Maximum Probability
 
 /* You are given an undirected weighted graph of n nodes (0-indexed), represented by an edge list where edges[i] = [a, b] is an undirected edge connecting the nodes a and b with a probability of success of traversing that edge succProb[i].
@@ -295,7 +303,7 @@ var maxProbability = function(n, edges, succProb, start, end) {
     return 0;
 };
 
-
+-----------------------------------------------------------------------------------------------------------------------
 
 /* you are given a string s consisting of lowercase English letters, and an integer k.
 
@@ -343,6 +351,9 @@ var getLucky = function(s, k) {
     // Return the final result after k transformations
     return res;
 };
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 /* Walking Robot Simulation
 
@@ -393,7 +404,7 @@ var robotSim = function(commands, obstacles) {
     return maxDistance;
 };
 
-
+-----------------------------------------------------------------------------------------------------------------------
 
 /* 3217 problem leetcode 
 
@@ -445,6 +456,8 @@ var modifiedList = function(nums, head) {
     return temp.next;
 };
 
+-----------------------------------------------------------------------------------------------------------------------
+
 /* 
 
 1367 Linked List In binary tree
@@ -477,4 +490,66 @@ var dfs = function(head, cur, root) {
     // Recursively check left and right subtrees
     return dfs(head, cur, root.left) || dfs(head, cur, root.right);
 };
+-----------------------------------------------------------------------------------------------------------------------
 
+/*
+725 . split linked list parts
+Given the head of a singly linked list and an integer k, split the linked list into k consecutive linked list parts.
+
+The length of each part should be as equal as possible: no two parts should have a size differing by more than one. This may lead to some parts being null.
+
+The parts should be in the order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal to parts occurring later.
+
+Return an array of the k parts.
+
+*/
+
+
+ /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode[]}
+ */
+var splitListToParts = function(head, k) {
+    let ans = new Array(k).fill(null);
+
+    // Calculate total size of the linked list
+    let size = 0;
+    let current = head;
+    while (current) {
+        size++;
+        current = current.next;
+    }
+
+    // Minimum size of each part
+    let splitSize = Math.floor(size / k);
+    let remainder = size % k; // Remaining nodes to distribute
+
+    current = head;
+    let prev = null;
+    for (let i = 0; i < k; i++) {
+        ans[i] = current;
+        let currentSize = splitSize + (remainder > 0 ? 1 : 0);
+        remainder--;
+
+        // Traverse to the end of the current part
+        for (let j = 0; j < currentSize; j++) {
+            prev = current;
+            current = current.next;
+        }
+
+        // Cut the list
+        if (prev) prev.next = null;
+    }
+
+    return ans;
+};
+
+-----------------------------------------------------------------------------------------------------------
