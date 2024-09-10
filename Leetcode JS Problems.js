@@ -548,8 +548,57 @@ var splitListToParts = function(head, k) {
         // Cut the list
         if (prev) prev.next = null;
     }
+     return ans;
+};
 
-    return ans;
+
+ -----------------------------------------------------------------------------------------------------------------------
+
+  // 2807 insert greatest common divisors in linked list 
+  /*
+  
+  Given the head of a linked list head, in which each node contains an integer value.
+
+Between every pair of adjacent nodes, insert a new node with a value equal to the greatest common divisor of them.
+
+Return the linked list after insertion.
+
+The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.
+  
+  */
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var insertGreatestCommonDivisors = function(head) {
+    if (!head || !head.next) return head;
+
+        const gcd = (a, b) => {
+            while (b !== 0) {
+                [a, b] = [b, a % b];
+            }
+            return a;
+        };
+
+        let node1 = head;
+        while (node1.next) {
+            let node2 = node1.next;
+            let gcdValue = gcd(node1.val, node2.val);
+            let gcdNode = new ListNode(gcdValue);
+            node1.next = gcdNode;
+            gcdNode.next = node2;
+            node1 = node2;
+        }
+
+        return head;
 };
 
 -----------------------------------------------------------------------------------------------------------
