@@ -641,5 +641,59 @@ var minBitFlips = function(start, goal) {
     return flipCount;
 };
 
+
 -----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+
+
+// 1310 . XOR queries of subarray
+
+ /*
+
+ You are given an array arr of positive integers. You are also given the array queries where queries[i] = [lefti, righti].
+
+For each query i compute the XOR of elements from lefti to righti (that is, arr[lefti] XOR arr[lefti + 1] XOR ... XOR arr[righti] ).
+
+Return an array answer where answer[i] is the answer to the ith query.
+
+ 
+ 
+ */
+
+
+/**
+ * @param {number[]} arr
+ * @param {number[][]} queries
+ * @return {number[]}
+ */
+var xorQueries = function(arr, queries) {
+    const n = arr.length;
+    const pre = new Array(n);
+    pre[0] = arr[0];
+    
+    // Compute prefix XOR array
+    for (let i = 1; i < n; i++) {
+        pre[i] = pre[i - 1] ^ arr[i];
+    }
+    
+    const res = [];
+    
+    // Answer each query
+    for (const [left, right] of queries) {
+        if (left === 0) {
+            res.push(pre[right]);
+        } else {
+            res.push(pre[right] ^ pre[left - 1]);
+        }
+    }
+    
+    return res;
+};
+
+ 
+ -----------------------------------------------------------------------------------------------------------
+ 
+ -----------------------------------------------------------------------------------------------------------
+
 
