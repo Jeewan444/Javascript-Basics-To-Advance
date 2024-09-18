@@ -901,4 +901,29 @@ var findMinDifference = function(timePoints) {
  
  -----------------------------------------------------------------------------------------------------------
 
+// 179 largest number 
+
+ 
+//  Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+
+// Since the result may be very large, so you need to return a string instead of an integer.
+
+ 
+ /**
+ * @param {number[]} nums
+ * @return {string}
+ */
+var largestNumber = function(nums) {
+    const stringNums = nums.map(num => num.toString());
+    const compare = (a, b) => {
+        const concateStrs = a + b;
+        const concateStrs2 = b + a;
+        return concateStrs > concateStrs2 ? -1 : (concateStrs === concateStrs2 ? 0 : 1);
+    };
+    stringNums.sort(compare);
+    if (stringNums[0] === "0") {
+        return "0";
+    }
+    return stringNums.join('');
+};
 
