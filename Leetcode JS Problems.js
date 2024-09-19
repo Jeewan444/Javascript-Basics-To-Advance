@@ -927,3 +927,77 @@ var largestNumber = function(nums) {
     return stringNums.join('');
 };
 
+-----------------------------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------------------------
+
+// 241 . different ways to add parenthesis.
+
+ 
+// Given a string expression of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. You may return the answer in any order.
+
+// The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed 104.
+
+ 
+
+// Example 1:
+
+// Input: expression = "2-1-1"
+// Output: [0,2]
+// Explanation:
+// ((2-1)-1) = 0 
+// (2-(1-1)) = 2
+
+
+
+var diffWaysToCompute = function(expression) {
+    const memo = new Map();
+
+    // Helper function to recursively solve sub-expressions
+    function solve(expr) {
+        // If the result for the current expression is already computed, return it
+        if (memo.has(expr)) return memo.get(expr);
+        
+        const results = [];
+        
+        // Traverse through the expression
+        for (let i = 0; i < expr.length; i++) {
+            const char = expr[i];
+            
+            // If the current character is an operator, split the expression
+            if (char === '+' || char === '-' || char === '*') {
+                // Divide into left and right sub-expressions
+                const left = solve(expr.slice(0, i));
+                const right = solve(expr.slice(i + 1));
+                
+                // Combine results from both sides based on the operator
+                for (const l of left) {
+                    for (const r of right) {
+                        if (char === '+') {
+                            results.push(l + r);
+                        } else if (char === '-') {
+                            results.push(l - r);
+                        } else if (char === '*') {
+                            results.push(l * r);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // If the expression is a number, convert it to a number and return it
+        if (results.length === 0) results.push(parseInt(expr));
+        
+        // Memoize the result for the current expression
+        memo.set(expr, results);
+        return results;
+    }
+
+    return solve(expression);
+};
+
+
+
+-----------------------------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------------------------
