@@ -997,6 +997,63 @@ var diffWaysToCompute = function(expression) {
 };
 
 
+-----------------------------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------------------------
+
+// 214. shortest palindrome
+
+ 
+//  You are given a string s. You can convert s to a 
+// palindrome
+//  by adding characters in front of it.
+
+// Return the shortest palindrome you can find by performing this transformation.
+
+ 
+
+// Example 1:
+
+// Input: s = "aacecaaa"
+// Output: "aaacecaaa"
+// Example 2:
+
+// Input: s = "abcd"
+// Output: "dcbabcd"
+
+
+
+
+ var shortestPalindrome = function(s) {
+    if (s.length === 0) return s;
+
+    // Combine string `s` with its reverse
+    let rev = s.split('').reverse().join('');
+    let combined = s + '#' + rev;
+
+    // KMP failure table (LPS - longest prefix that is also suffix)
+    let lps = new Array(combined.length).fill(0);
+    for (let i = 1, len = 0; i < combined.length;) {
+        if (combined[i] === combined[len]) {
+            lps[i++] = ++len;
+        } else {
+            if (len > 0) {
+                len = lps[len - 1];
+            } else {
+                lps[i++] = 0;
+            }
+        }
+    }
+
+    // Longest palindromic prefix's length
+    let longestPrefixLength = lps[combined.length - 1];
+
+    // Add the non-palindromic part (the suffix that doesn't form a palindrome)
+    let nonPalindromicSuffix = s.substring(longestPrefixLength).split('').reverse().join('');
+    
+    return nonPalindromicSuffix + s;
+};
+
 
 -----------------------------------------------------------------------------------------------------------
  
