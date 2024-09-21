@@ -1054,6 +1054,52 @@ var diffWaysToCompute = function(expression) {
     return nonPalindromicSuffix + s;
 };
 
+-----------------------------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------------------------
+
+//386. lexicographical numbers
+
+//  Given an integer n, return all the numbers in the range [1, n] sorted in lexicographical order.
+
+// You must write an algorithm that runs in O(n) time and uses O(1) extra space. 
+
+ 
+
+// Example 1:
+
+// Input: n = 13
+// Output: [1,10,11,12,13,2,3,4,5,6,7,8,9]
+// Example 2:
+
+// Input: n = 2
+// Output: [1,2]
+
+
+
+var lexicalOrder = function(n) {
+    let res = [];
+    let num = 1;
+    for (let i = 0; i < n; i++) {
+        res.push(num);
+        if (num * 10 <= n) {
+            num *= 10;  // Go deeper
+        } else {
+            while (num % 10 === 9 || num >= n) {
+                num = Math.floor(num / 10);  // Go back up
+            }
+            num++;  // Move to the next number
+        }
+    }
+    return res;
+};
+
+
+-----------------------------------------------------------------------------------------------------------
+ 
+-----------------------------------------------------------------------------------------------------------
+
+
 
 -----------------------------------------------------------------------------------------------------------
  
