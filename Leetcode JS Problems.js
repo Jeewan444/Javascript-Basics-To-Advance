@@ -1,4 +1,4 @@
-g /* problem no 2665
+  g /* problem no 2665
 
 Write a function createCounter. It should accept an initial integer init. It should return an object with three functions.
 
@@ -3692,7 +3692,23 @@ public class Solution {
  
 -----------------------------------------------------------------------------------------------------------
 
+//2109.
+ class Solution {
+    public String addSpaces(String s, int[] spaces) {
+        StringBuilder sb=new StringBuilder();
 
+        sb.append(s.substring(0,spaces[0]));
+        int i=1;
+        for(; i<spaces.length; i++){
+            sb.append(" ");
+            sb.append(s.substring(spaces[i-1],spaces[i]));            
+        }
+        sb.append(" ");
+        sb.append(s.substring(spaces[i-1])); 
+
+        return sb.toString();
+    }
+}
 
 
 -----------------------------------------------------------------------------------------------------------
